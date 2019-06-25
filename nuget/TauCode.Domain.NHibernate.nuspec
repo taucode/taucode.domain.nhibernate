@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>TauCode.Domain.NHibernate</id>
+    <version>2.19.1-dev-0625-1338</version>
+    <authors>TauCode</authors>
+    <owners>TauCode</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>http://taucode.com/</projectUrl>
+    <description>NHibernate support for TauCode Domain</description>
+    <releaseNotes>
+      Ported to .NET Standard
+    </releaseNotes>
+    <tags>taucode domain nhibernate</tags>
+    <dependencies>
+      <dependency id="FluentNHibernate" version="2.1.2" />
+      <dependency id="TauCode.Domain" version="2.19.2-dev-0624-2248" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\TauCode.Domain.NHibernate\bin\Release\netstandard2.0\TauCode.Domain.NHibernate.dll" target="lib\netstandard2.0" />
+    <file src="..\src\TauCode.Domain.NHibernate\bin\Release\netstandard2.0\TauCode.Domain.NHibernate.pdb" target="lib\netstandard2.0" />
+  </files>
+</package>

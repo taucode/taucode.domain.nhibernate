@@ -14,10 +14,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{BB0AD8E1-B
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4EE5C30C-4201-4652-AB94-49E8F9E055C8}"
+	ProjectSection(SolutionItems) = preProject
+		nuget\TauCode.Domain.NHibernate.nuspec = nuget\TauCode.Domain.NHibernate.nuspec
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Domain.NHibernate", "src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj", "{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate", "src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj", "{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Domain.NHibernate.Test", "test\TauCode.Domain.NHibernate.Test\TauCode.Domain.NHibernate.Test.csproj", "{41732A42-E6B1-4F48-A0AF-8631CE4827F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Test", "test\TauCode.Domain.NHibernate.Test\TauCode.Domain.NHibernate.Test.csproj", "{41732A42-E6B1-4F48-A0AF-8631CE4827F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
