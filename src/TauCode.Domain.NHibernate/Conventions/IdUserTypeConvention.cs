@@ -8,6 +8,29 @@ namespace TauCode.Domain.NHibernate.Conventions
 {
     public class IdUserTypeConvention : IPropertyConvention, IIdConvention
     {
+        public IdUserTypeConvention(Type idUserTypeGeneric)
+        {
+            if (idUserTypeGeneric == null)
+            {
+                throw new ArgumentNullException(nameof(idUserTypeGeneric));
+            }
+
+            var valid = false;
+
+            do
+            {
+                if (!idUserTypeGeneric.IsConstructedGenericType)
+                {
+                    break;
+                }
+
+                var underlyingType = idUserTypeGeneric.GetGenericTypeDefinition();
+                throw new NotImplementedException();
+
+            } while (false);
+
+        }
+
         public void Apply(IPropertyInstance instance)
         {
             var propertyType = instance.Type.GetUnderlyingSystemType();

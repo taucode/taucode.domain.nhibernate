@@ -5,15 +5,36 @@ using System;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Reflection;
+using TauCode.Domain.Identities;
 
 namespace TauCode.Domain.NHibernate.Types
 {
-    public class IdUserType<T> : IUserType
+    public class IdUserType<T> : IUserType where T : IId
     {
+        protected readonly ConstructorInfo GuidCtor;
+
+        public IdUserType()
+        {
+            this.GuidCtor = typeof(T).GetConstructor(new[] { typeof(Guid) });
+            if (this.GuidCtor == null)
+            {
+                throw new ArgumentException($"Type '{typeof(T).FullName}' doesn't have public .ctor(Guid).");
+            }
+        }
+
         bool IUserType.Equals(object x, object y)
         {
-            if (ReferenceEquals(x, y)) { return true; }
-            if (x == null || y == null) { return false; }
+            if (ReferenceEquals(x, y))
+            {
+                return true;
+            }
+
+            if (x == null || y == null)
+            {
+                return false;
+            }
+
             return x.Equals(y);
         }
 
@@ -25,15 +46,31 @@ namespace TauCode.Domain.NHibernate.Types
         public object NullSafeGet(DbDataReader rs, string[] names, ISessionImplementor session, object owner)
         {
             var ordinal = rs.GetOrdinal(names[0]);
-            if (rs.IsDBNull(ordinal)) return null;
-            var obj = TypeDescriptor.GetConverter(typeof(Guid)).ConvertFromInvariantString(rs[names[0]].ToString());
-            return typeof(T).GetConstructor(new[] { typeof(Guid) }).Invoke(new[] { obj });
+
+            if (rs.IsDBNull(ordinal))
+            {
+                return null;
+            }
+
+            var guid = TypeDescriptor.GetConverter(typeof(Guid)).ConvertFromInvariantString(rs[names[0]].ToString());
+            var id = this.GuidCtor.Invoke(new[] { guid });
+            return id;
         }
 
-        public void NullSafeSet(DbCommand cmd, object value, int index, ISessionImplementor session)
+        public virtual void NullSafeSet(DbCommand cmd, object value, int index, ISessionImplementor session)
         {
-            ((IDataParameter)cmd.Parameters[index]).Value = value != null ?
-                TypeDescriptor.GetConverter(typeof(Guid)).ConvertFromInvariantString(value.ToString()) : DBNull.Value;
+            object paramValue;
+
+            if (value == null)
+            {
+                paramValue = DBNull.Value;
+            }
+            else
+            {
+                paramValue = TypeDescriptor.GetConverter(typeof(Guid)).ConvertFromInvariantString(value.ToString());
+            }
+
+            cmd.Parameters[index].Value = paramValue;
         }
 
         public object DeepCopy(object value)
@@ -64,7 +101,9 @@ namespace TauCode.Domain.NHibernate.Types
                 return new[] { new SqlType(dbType) };
             }
         }
+
         public Type ReturnedType => typeof(T);
+
         public bool IsMutable => false;
     }
 }
