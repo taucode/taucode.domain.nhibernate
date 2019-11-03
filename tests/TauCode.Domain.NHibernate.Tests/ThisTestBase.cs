@@ -1,7 +1,8 @@
 ﻿using NUnit.Framework;
-using System;
 using System.Data;
+using System.Data.SQLite;
 using TauCode.Domain.NHibernate.Tests.Base;
+using TauCode.Utils.Extensions;
 
 namespace TauCode.Domain.NHibernate.Tests
 {
@@ -11,17 +12,19 @@ namespace TauCode.Domain.NHibernate.Tests
         #region Overridden
 
         protected override TargetDbType GetTargetDbType() => TargetDbType.SQLite;
+
         protected override string CreateConnectionString()
         {
-            throw new NotImplementedException();
+            var path = FileExtensions.CreateTempFilePath("ztemp", ".sqlite");
+            var connectionString = $"Data Source={path};Version=3;";
+            return connectionString;
         }
 
         protected override IDbConnection CreateDbConnection(string connectionString)
         {
-            throw new NotImplementedException();
+            return new SQLiteConnection(connectionString);
         }
 
         #endregion
-
     }
 }

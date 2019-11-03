@@ -136,5 +136,31 @@ namespace TauCode.Domain.NHibernate.Tests.Base
                 this.Connection = null;
             }
         }
+
+        [SetUp]
+        public void SetUpAppHostTestBase()
+        {
+            // autofac stuff
+            this.SetupLifetimeScope = this.Container.BeginLifetimeScope();
+            this.TestLifetimeScope = this.Container.BeginLifetimeScope();
+            this.AssertLifetimeScope = this.Container.BeginLifetimeScope();
+
+            // nhibernate stuff
+            this.SetupSession = this.SetupLifetimeScope.Resolve<ISession>();
+            this.TestSession = this.TestLifetimeScope.Resolve<ISession>();
+            this.AssertSession = this.AssertLifetimeScope.Resolve<ISession>();
+        }
+
+        [TearDown]
+        public void TearDownAppHostTestBase()
+        {
+            this.SetupSession.Dispose();
+            this.TestSession.Dispose();
+            this.AssertSession.Dispose();
+
+            this.SetupLifetimeScope.Dispose();
+            this.TestLifetimeScope.Dispose();
+            this.AssertLifetimeScope.Dispose();
+        }
     }
 }
