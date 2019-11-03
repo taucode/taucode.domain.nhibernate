@@ -12,4 +12,9 @@
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj" />
+    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Common\TauCode.Domain.NHibernate.Tests.Common.csproj" />
+  </ItemGroup>
+
 </Project>
