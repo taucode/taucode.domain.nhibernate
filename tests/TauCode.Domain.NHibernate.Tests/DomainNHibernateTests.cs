@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
 
-namespace TauCode.Domain.NHibernate.Test
+namespace TauCode.Domain.NHibernate.Tests
 {
     [TestFixture]
-    public class DomainNHibernateTest
+    public class DomainNHibernateTests
     {
         [Test]
         public void Dummy()
