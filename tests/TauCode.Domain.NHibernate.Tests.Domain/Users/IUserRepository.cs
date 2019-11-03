@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TauCode.Domain.NHibernate.Tests.Common.Users
+namespace TauCode.Domain.NHibernate.Tests.Domain.Users
 {
     public interface IUserRepository
     {

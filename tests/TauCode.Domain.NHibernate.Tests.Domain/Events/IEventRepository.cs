@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using TauCode.Domain.NHibernate.Tests.Common.Users;
+using TauCode.Domain.NHibernate.Tests.Domain.Users;
 
-namespace TauCode.Domain.NHibernate.Tests.Common.Events
+namespace TauCode.Domain.NHibernate.Tests.Domain.Events
 {
     public interface IEventRepository
     {

@@ -14,7 +14,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj" />
-    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Common\TauCode.Domain.NHibernate.Tests.Common.csproj" />
+    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Base\TauCode.Domain.NHibernate.Tests.Base.csproj" />
+    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj" />
   </ItemGroup>
 
 </Project>

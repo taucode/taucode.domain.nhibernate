@@ -1,21 +1,21 @@
 ﻿using System;
 using TauCode.Domain.Identities;
 
-namespace TauCode.Domain.NHibernate.Tests.Common.Users
+namespace TauCode.Domain.NHibernate.Tests.Domain.Events
 {
     [Serializable]
-    public class UserId : IdBase
+    public class EventId : IdBase
     {
-        public UserId()
+        public EventId()
         {
         }
 
-        public UserId(Guid id)
+        public EventId(Guid id)
             : base(id)
         {
         }
 
-        public UserId(string id)
+        public EventId(string id)
             : base(id)
         {
         }
