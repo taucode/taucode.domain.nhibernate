@@ -8,9 +8,6 @@ CREATE TABLE [user](
 CREATE TABLE [event](
 	[id] uniqueidentifier NOT NULL PRIMARY KEY,
 	[user_id] uniqueidentifier NOT NULL,
-	[description] varchar(100) NOT NULL
+	[description] varchar(100) NOT NULL,
+	CONSTRAINT FK_event_user FOREIGN KEY([user_id]) REFERENCES [user]([id])
 )
-
-/* foreign key */
-ALTER TABLE [event] ADD CONSTRAINT FK_event_user FOREIGN KEY([user_id])
-REFERENCES [user]([id])

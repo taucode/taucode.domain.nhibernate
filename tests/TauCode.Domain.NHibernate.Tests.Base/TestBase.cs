@@ -1,9 +1,15 @@
 ﻿using Autofac;
+using FluentNHibernate.Cfg;
+using FluentNHibernate.Conventions.Helpers;
+using Inflector;
 using NHibernate;
+using NHibernate.Cfg;
 using NUnit.Framework;
 using System;
 using System.Data;
 using System.Globalization;
+using System.Reflection;
+using TauCode.Db.Lab;
 using TauCode.Db.Lab.Utils.Serialization.SQLite;
 using TauCode.Db.Utils.Building;
 using TauCode.Db.Utils.Building.SQLite;
@@ -16,6 +22,9 @@ using TauCode.Db.Utils.Inspection.SQLite;
 using TauCode.Db.Utils.Inspection.SqlServer;
 using TauCode.Db.Utils.Serialization;
 using TauCode.Db.Utils.Serialization.SqlServer;
+using TauCode.Domain.NHibernate.Conventions;
+using TauCode.Domain.NHibernate.Tests.Persistence;
+using TauCode.Utils.Extensions;
 
 namespace TauCode.Domain.NHibernate.Tests.Base
 {
@@ -108,16 +117,48 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             }
         }
 
+        protected abstract Type GetIdUserTypeGeneric();
+
+        protected abstract Configuration CreateConfiguration(string connectionString);
+
+        private ISessionFactory BuildSessionFactory(Configuration configuration, Assembly mappingsAssembly)
+        {
+            return Fluently.Configure(configuration)
+                .Mappings(m => m.FluentMappings.AddFromAssembly(mappingsAssembly)
+                    .Conventions.Add(ForeignKey.Format((p, t) =>
+                    {
+                        if (p == null) return t.Name.Underscore() + "_id";
+
+                        return p.Name.Underscore() + "_id";
+                    }))
+                    .Conventions.Add(LazyLoad.Never())
+                    .Conventions.Add(Table.Is(x => x.TableName.Underscore().ToUpper()))
+                    .Conventions.Add(ConventionBuilder.Property.Always(x => x.Column(x.Property.Name.Underscore())))
+                    .Conventions.Add(typeof(IdUserTypeConvention), new IdUserTypeConvention(this.GetIdUserTypeGeneric()))
+                )
+                .BuildSessionFactory();
+        }
+
         [OneTimeSetUp]
         public void OneTimeSetUpBase()
         {
             Inflector.Inflector.SetDefaultCultureFunc = () => new CultureInfo("en-US");
 
-            var containerBuilder = new ContainerBuilder();
+            this.ConnectionString = this.CreateConnectionString();
 
+            var containerBuilder = new ContainerBuilder();
+            var configuration = this.CreateConfiguration(this.ConnectionString);
+            var mappingsAssembly = typeof(PersistenceBeacon).Assembly;
+
+            containerBuilder.Register(c => BuildSessionFactory(configuration, mappingsAssembly))
+                .As<ISessionFactory>()
+                .SingleInstance();
+
+            containerBuilder.Register(c => c.Resolve<ISessionFactory>().OpenSession())
+                .As<ISession>()
+                .InstancePerLifetimeScope();
 
             this.Container = containerBuilder.Build();
-            this.ConnectionString = this.CreateConnectionString();
 
             this.Connection = this.CreateDbConnection(this.ConnectionString);
             this.Connection.Open();
@@ -138,7 +179,7 @@ namespace TauCode.Domain.NHibernate.Tests.Base
         }
 
         [SetUp]
-        public void SetUpAppHostTestBase()
+        public void SetUpBase()
         {
             // autofac stuff
             this.SetupLifetimeScope = this.Container.BeginLifetimeScope();
@@ -149,10 +190,18 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             this.SetupSession = this.SetupLifetimeScope.Resolve<ISession>();
             this.TestSession = this.TestLifetimeScope.Resolve<ISession>();
             this.AssertSession = this.AssertLifetimeScope.Resolve<ISession>();
+
+            // data
+            this.DbInspector.PurgeDb();
+            var script = typeof(TestBase).Assembly.GetResourceText("create-db.sql", true);
+            this.DbInspector.ExecuteScript(script);
+            
+            var json = typeof(TestBase).Assembly.GetResourceText("testdb.json", true);
+            this.DataSerializer.DeserializeDb(this.Connection, json);
         }
 
         [TearDown]
-        public void TearDownAppHostTestBase()
+        public void TearDownBase()
         {
             this.SetupSession.Dispose();
             this.TestSession.Dispose();

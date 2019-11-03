@@ -27,8 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj" />
     <ProjectReference Include="..\..\taucode\TauCode.Db.Lab\TauCode.Db.Lab.csproj" />
     <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj" />
+    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Persistence\TauCode.Domain.NHibernate.Tests.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
