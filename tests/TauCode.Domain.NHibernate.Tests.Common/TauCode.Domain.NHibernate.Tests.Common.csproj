@@ -1,8 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\create-db.sql" />
+    <None Remove="Resources\testdb.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\create-db.sql" />
+    <EmbeddedResource Include="Resources\testdb.json" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="TauCode.Domain" Version="3.0.0" />
