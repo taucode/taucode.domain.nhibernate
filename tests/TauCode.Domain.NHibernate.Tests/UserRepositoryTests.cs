@@ -55,6 +55,27 @@ namespace TauCode.Domain.NHibernate.Tests
         }
 
         [Test]
+        public void GetAll_NoArguments_ReturnsAllUser()
+        {
+            // Arrange
+
+            // Act
+            var users = _testUserRepository.GetAll();
+
+            // Assert
+            Assert.That(users, Has.Count.EqualTo(3));
+
+            var user = users.Single(x => x.Id == TestHelper.AkId);
+            Assert.That(user.Name, Is.EqualTo("ak"));
+
+            user = users.Single(x => x.Id == TestHelper.OliaId);
+            Assert.That(user.Name, Is.EqualTo("olia"));
+
+            user = users.Single(x => x.Id == TestHelper.IraId);
+            Assert.That(user.Name, Is.EqualTo("ira"));
+        }
+
+        [Test]
         public void Save_NewUser_CreatesUser()
         {
             // Arrange
@@ -115,33 +136,33 @@ namespace TauCode.Domain.NHibernate.Tests
             CollectionAssert.AreEquivalent(remainingIds, new[] { TestHelper.AkId, TestHelper.OliaId });
         }
 
-    [Test]
-    public void Delete_NonExistingUser_DoesNothing()
-    {
-        // Arrange
-        var id = new UserId(TestHelper.NonExistingId);
-
-        // Act
-        bool? deleted = null;
-        this.TestSession.DoInTransaction(() =>
+        [Test]
+        public void Delete_NonExistingUser_DoesNothing()
         {
-            deleted = _testUserRepository.Delete(id);
-        });
+            // Arrange
+            var id = new UserId(TestHelper.NonExistingId);
 
-        // Assert
-        Assert.That(deleted, Is.False);
-        var remainingIds = this.AssertSession
-            .Query<User>()
-            .ToList()
-            .Select(x => x.Id);
-        CollectionAssert.AreEquivalent(
-            remainingIds, 
-            new[]
+            // Act
+            bool? deleted = null;
+            this.TestSession.DoInTransaction(() =>
             {
-                TestHelper.AkId, 
+                deleted = _testUserRepository.Delete(id);
+            });
+
+            // Assert
+            Assert.That(deleted, Is.False);
+            var remainingIds = this.AssertSession
+                .Query<User>()
+                .ToList()
+                .Select(x => x.Id);
+            CollectionAssert.AreEquivalent(
+                remainingIds,
+                new[]
+                {
+                TestHelper.AkId,
                 TestHelper.OliaId,
                 TestHelper.IraId,
-            });
-    }
+                });
+        }
     }
 }
