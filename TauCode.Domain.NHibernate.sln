@@ -22,17 +22,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests", "tests\TauCode.Domain.NHibernate.Tests\TauCode.Domain.NHibernate.Tests.csproj", "{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Domain.NHibernate.Tests.SqlServer", "tests\TauCode.Domain.NHibernate.Tests.SqlServer\TauCode.Domain.NHibernate.Tests.SqlServer.csproj", "{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.SqlServer", "tests\TauCode.Domain.NHibernate.Tests.SqlServer\TauCode.Domain.NHibernate.Tests.SqlServer.csproj", "{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Domain.NHibernate.Tests.Domain", "tests\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj", "{B96C9240-16CB-406E-992D-F11E0BC6686A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Domain", "tests\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj", "{B96C9240-16CB-406E-992D-F11E0BC6686A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Domain.NHibernate.Tests.Base", "tests\TauCode.Domain.NHibernate.Tests.Base\TauCode.Domain.NHibernate.Tests.Base.csproj", "{1F847E1F-4581-4F79-B932-8B64C4258358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Base", "tests\TauCode.Domain.NHibernate.Tests.Base\TauCode.Domain.NHibernate.Tests.Base.csproj", "{1F847E1F-4581-4F79-B932-8B64C4258358}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "taucode", "taucode", "{2A63E3FB-03DD-482A-BFB9-52A9FDCB0DE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Persistence", "tests\TauCode.Domain.NHibernate.Tests.Persistence\TauCode.Domain.NHibernate.Tests.Persistence.csproj", "{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Db.Lab", "taucode\TauCode.Db.Lab\TauCode.Db.Lab.csproj", "{88ACC001-26F2-4246-86CF-DD7AA2F01D80}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "taucode", "taucode", "{E1F3C8AA-07C4-4947-91D0-D767AB4FFD92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TauCode.Domain.NHibernate.Tests.Persistence", "tests\TauCode.Domain.NHibernate.Tests.Persistence\TauCode.Domain.NHibernate.Tests.Persistence.csproj", "{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Db.Lab", "taucode\TauCode.Db.Lab\TauCode.Db.Lab.csproj", "{9BE48955-6296-4F7F-B4F2-8CE3172A6668}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,14 +60,14 @@ Global
 		{1F847E1F-4581-4F79-B932-8B64C4258358}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F847E1F-4581-4F79-B932-8B64C4258358}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F847E1F-4581-4F79-B932-8B64C4258358}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88ACC001-26F2-4246-86CF-DD7AA2F01D80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88ACC001-26F2-4246-86CF-DD7AA2F01D80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88ACC001-26F2-4246-86CF-DD7AA2F01D80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88ACC001-26F2-4246-86CF-DD7AA2F01D80}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BE48955-6296-4F7F-B4F2-8CE3172A6668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BE48955-6296-4F7F-B4F2-8CE3172A6668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BE48955-6296-4F7F-B4F2-8CE3172A6668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BE48955-6296-4F7F-B4F2-8CE3172A6668}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,8 +78,8 @@ Global
 		{B93DEF0B-68C0-4C2B-8373-C78B57825F6B} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
 		{B96C9240-16CB-406E-992D-F11E0BC6686A} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
 		{1F847E1F-4581-4F79-B932-8B64C4258358} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
-		{88ACC001-26F2-4246-86CF-DD7AA2F01D80} = {2A63E3FB-03DD-482A-BFB9-52A9FDCB0DE6}
 		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
+		{9BE48955-6296-4F7F-B4F2-8CE3172A6668} = {E1F3C8AA-07C4-4947-91D0-D767AB4FFD92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E033216E-1151-4D66-A416-3EBD14511CA8}

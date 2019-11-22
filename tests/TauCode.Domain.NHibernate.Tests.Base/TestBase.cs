@@ -121,6 +121,8 @@ namespace TauCode.Domain.NHibernate.Tests.Base
 
         protected abstract Configuration CreateConfiguration(string connectionString);
 
+        protected abstract void BuildContainer(ContainerBuilder containerBuilder);
+
         private ISessionFactory BuildSessionFactory(Configuration configuration, Assembly mappingsAssembly)
         {
             return Fluently.Configure(configuration)
@@ -157,6 +159,8 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             containerBuilder.Register(c => c.Resolve<ISessionFactory>().OpenSession())
                 .As<ISession>()
                 .InstancePerLifetimeScope();
+
+            this.BuildContainer(containerBuilder);
 
             this.Container = containerBuilder.Build();
 

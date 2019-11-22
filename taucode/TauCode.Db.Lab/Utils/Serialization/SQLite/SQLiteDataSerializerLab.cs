@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Linq;
 using TauCode.Db.Model;
 using TauCode.Db.Utils.Building;
 using TauCode.Db.Utils.Building.SQLite;
@@ -13,9 +14,6 @@ namespace TauCode.Db.Lab.Utils.Serialization.SQLite
 {
     public class SQLiteDataSerializerLab : DataSerializerBase
     {
-        private const int MONEY_TYPE_PRECISION = 19;
-        private const int MONEY_TYPE_SCALE = 4;
-
         public SQLiteDataSerializerLab()
         {
         }
@@ -40,7 +38,24 @@ namespace TauCode.Db.Lab.Utils.Serialization.SQLite
 
         protected override ParameterInfo GetParameterInfo(TableMold tableMold, string columnName)
         {
-            throw new NotImplementedException();
+            var column = tableMold.Columns.Single(x => x.Name == columnName);
+            switch (column.Type.Name.ToLowerInvariant())
+            {
+                case "uniqueidentifier":
+                    return new ParameterInfo
+                    {
+                        DbType = DbType.String,
+                    };
+
+                case "varchar":
+                    return new ParameterInfo
+                    {
+                        DbType = DbType.String,
+                    };
+
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

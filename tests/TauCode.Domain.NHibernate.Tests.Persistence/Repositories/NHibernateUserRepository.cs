@@ -1,24 +1,40 @@
-﻿using System;
+﻿using NHibernate;
 using System.Collections.Generic;
+using System.Linq;
 using TauCode.Domain.NHibernate.Tests.Domain.Users;
 
 namespace TauCode.Domain.NHibernate.Tests.Persistence.Repositories
 {
     public class NHibernateUserRepository : IUserRepository
     {
+        private readonly ISession _session;
+
+        public NHibernateUserRepository(ISession session)
+        {
+            _session = session;
+        }
+
         public User GetById(UserId id)
         {
-            throw new NotImplementedException();
+            var user = _session
+                .Query<User>()
+                .SingleOrDefault(x => x.Id == id);
+
+            return user;
         }
 
         public IList<User> GetAll()
         {
-            throw new NotImplementedException();
+            var users = _session
+                .Query<User>()
+                .ToList();
+
+            return users;
         }
 
         public void Save(User user)
         {
-            throw new NotImplementedException();
+            _session.SaveOrUpdate(user);
         }
     }
 }
