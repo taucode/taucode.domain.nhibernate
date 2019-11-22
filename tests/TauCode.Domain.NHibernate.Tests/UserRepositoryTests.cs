@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using NUnit.Framework;
-using System;
+using System.Linq;
 using TauCode.Domain.NHibernate.Tests.Base;
 using TauCode.Domain.NHibernate.Tests.Domain.Users;
 using TauCode.Domain.NHibernate.Tests.Persistence.Repositories;
@@ -11,7 +11,7 @@ namespace TauCode.Domain.NHibernate.Tests
     public class UserRepositoryTests : ThisTestBase
     {
         private IUserRepository _testUserRepository;
-        
+
         [SetUp]
         public void SetUp()
         {
@@ -97,22 +97,51 @@ namespace TauCode.Domain.NHibernate.Tests
         public void Delete_ExistingUser_DeletesUser()
         {
             // Arrange
+            var id = TestHelper.IraId;
 
             // Act
+            bool? deleted = null;
+            this.TestSession.DoInTransaction(() =>
+            {
+                deleted = _testUserRepository.Delete(id);
+            });
 
             // Assert
-            throw new NotImplementedException();
+            Assert.That(deleted, Is.True);
+            var remainingIds = this.AssertSession
+                .Query<User>()
+                .ToList()
+                .Select(x => x.Id);
+            CollectionAssert.AreEquivalent(remainingIds, new[] { TestHelper.AkId, TestHelper.OliaId });
         }
 
-        [Test]
-        public void Delete_NonExistingUser_DoesNothing()
+    [Test]
+    public void Delete_NonExistingUser_DoesNothing()
+    {
+        // Arrange
+        var id = new UserId(TestHelper.NonExistingId);
+
+        // Act
+        bool? deleted = null;
+        this.TestSession.DoInTransaction(() =>
         {
-            // Arrange
+            deleted = _testUserRepository.Delete(id);
+        });
 
-            // Act
-
-            // Assert
-            throw new NotImplementedException();
-        }
+        // Assert
+        Assert.That(deleted, Is.False);
+        var remainingIds = this.AssertSession
+            .Query<User>()
+            .ToList()
+            .Select(x => x.Id);
+        CollectionAssert.AreEquivalent(
+            remainingIds, 
+            new[]
+            {
+                TestHelper.AkId, 
+                TestHelper.OliaId,
+                TestHelper.IraId,
+            });
+    }
     }
 }
