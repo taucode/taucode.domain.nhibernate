@@ -9,8 +9,6 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Reflection;
-using TauCode.Db.Lab;
-using TauCode.Db.Lab.Utils.Serialization.SQLite;
 using TauCode.Db.Utils.Building;
 using TauCode.Db.Utils.Building.SQLite;
 using TauCode.Db.Utils.Building.SqlServer;
@@ -21,6 +19,7 @@ using TauCode.Db.Utils.Inspection;
 using TauCode.Db.Utils.Inspection.SQLite;
 using TauCode.Db.Utils.Inspection.SqlServer;
 using TauCode.Db.Utils.Serialization;
+using TauCode.Db.Utils.Serialization.SQLite;
 using TauCode.Db.Utils.Serialization.SqlServer;
 using TauCode.Domain.NHibernate.Conventions;
 using TauCode.Domain.NHibernate.Tests.Persistence;
@@ -110,7 +109,7 @@ namespace TauCode.Domain.NHibernate.Tests.Base
                     return new SqlServerDataSerializer();
 
                 case TargetDbType.SQLite:
-                    return new SQLiteDataSerializerLab();
+                    return new SQLiteDataSerializer();
 
                 default:
                     throw new NotSupportedException($"{dbType} is not supported.");

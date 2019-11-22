@@ -23,12 +23,11 @@
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-    <PackageReference Include="TauCode.Db" Version="3.1.0-dev-2019-11-22-12-31" />
+    <PackageReference Include="TauCode.Db" Version="3.1.0-dev-2019-11-22-17-41" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj" />
-    <ProjectReference Include="..\..\taucode\TauCode.Db.Lab\TauCode.Db.Lab.csproj" />
     <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj" />
     <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Persistence\TauCode.Domain.NHibernate.Tests.Persistence.csproj" />
   </ItemGroup>
