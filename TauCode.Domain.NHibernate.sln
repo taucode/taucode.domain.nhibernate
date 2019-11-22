@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89412E0C-9F93-4FB0-ACB6-DC95174759A0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "misc", "misc", "{BB0AD8E1-B336-4058-9737-E2AE2B447BFC}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,7 +20,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{4EE5C30C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate", "src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj", "{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Test", "test\TauCode.Domain.NHibernate.Test\TauCode.Domain.NHibernate.Test.csproj", "{41732A42-E6B1-4F48-A0AF-8631CE4827F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests", "tests\TauCode.Domain.NHibernate.Tests\TauCode.Domain.NHibernate.Tests.csproj", "{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.SqlServer", "tests\TauCode.Domain.NHibernate.Tests.SqlServer\TauCode.Domain.NHibernate.Tests.SqlServer.csproj", "{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Domain", "tests\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj", "{B96C9240-16CB-406E-992D-F11E0BC6686A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Base", "tests\TauCode.Domain.NHibernate.Tests.Base\TauCode.Domain.NHibernate.Tests.Base.csproj", "{1F847E1F-4581-4F79-B932-8B64C4258358}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Persistence", "tests\TauCode.Domain.NHibernate.Tests.Persistence\TauCode.Domain.NHibernate.Tests.Persistence.csproj", "{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,17 +40,37 @@ Global
 		{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41732A42-E6B1-4F48-A0AF-8631CE4827F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41732A42-E6B1-4F48-A0AF-8631CE4827F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41732A42-E6B1-4F48-A0AF-8631CE4827F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41732A42-E6B1-4F48-A0AF-8631CE4827F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B93DEF0B-68C0-4C2B-8373-C78B57825F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96C9240-16CB-406E-992D-F11E0BC6686A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96C9240-16CB-406E-992D-F11E0BC6686A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96C9240-16CB-406E-992D-F11E0BC6686A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96C9240-16CB-406E-992D-F11E0BC6686A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F847E1F-4581-4F79-B932-8B64C4258358}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F847E1F-4581-4F79-B932-8B64C4258358}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F847E1F-4581-4F79-B932-8B64C4258358}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F847E1F-4581-4F79-B932-8B64C4258358}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37} = {89412E0C-9F93-4FB0-ACB6-DC95174759A0}
-		{41732A42-E6B1-4F48-A0AF-8631CE4827F9} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
+		{7C449D1A-CBDF-41D4-ACE1-06BF39C77B3B} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
+		{B93DEF0B-68C0-4C2B-8373-C78B57825F6B} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
+		{B96C9240-16CB-406E-992D-F11E0BC6686A} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
+		{1F847E1F-4581-4F79-B932-8B64C4258358} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
+		{9446FB42-4AC3-405A-A1C2-E216E4F29D3E} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E033216E-1151-4D66-A416-3EBD14511CA8}

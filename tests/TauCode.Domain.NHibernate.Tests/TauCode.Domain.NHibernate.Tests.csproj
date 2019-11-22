@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.112" />
+    <PackageReference Include="TauCode.Utils" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\TauCode.Domain.NHibernate\TauCode.Domain.NHibernate.csproj" />
+    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Base\TauCode.Domain.NHibernate.Tests.Base.csproj" />
+    <ProjectReference Include="..\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
