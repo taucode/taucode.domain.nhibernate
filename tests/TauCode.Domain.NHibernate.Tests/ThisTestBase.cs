@@ -3,9 +3,10 @@ using NUnit.Framework;
 using System;
 using System.Data;
 using System.Data.SQLite;
+using TauCode.Db;
 using TauCode.Domain.NHibernate.Tests.Base;
 using TauCode.Domain.NHibernate.Types;
-using TauCode.Utils.Extensions;
+using TauCode.Extensions;
 
 namespace TauCode.Domain.NHibernate.Tests
 {
@@ -14,7 +15,7 @@ namespace TauCode.Domain.NHibernate.Tests
     {
         #region Overridden
 
-        protected override TargetDbType GetTargetDbType() => TargetDbType.SQLite;
+        protected override string GetDbProviderName() => DbProviderNames.SQLite;
 
         protected override string CreateConnectionString()
         {

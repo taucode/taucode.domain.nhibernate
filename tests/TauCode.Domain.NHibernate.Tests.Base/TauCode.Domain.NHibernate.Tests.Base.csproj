@@ -23,7 +23,7 @@
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.15.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.4.0" />
-    <PackageReference Include="TauCode.Db" Version="3.1.0-dev-2019-11-22-17-41" />
+    <PackageReference Include="TauCode.Db" Version="1.0.0-dev-2019-12-21-23-17" />
   </ItemGroup>
 
   <ItemGroup>

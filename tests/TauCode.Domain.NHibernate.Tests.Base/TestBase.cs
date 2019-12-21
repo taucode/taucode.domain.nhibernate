@@ -9,21 +9,12 @@ using System;
 using System.Data;
 using System.Globalization;
 using System.Reflection;
-using TauCode.Db.Utils.Building;
-using TauCode.Db.Utils.Building.SQLite;
-using TauCode.Db.Utils.Building.SqlServer;
-using TauCode.Db.Utils.Crud;
-using TauCode.Db.Utils.Crud.SQLite;
-using TauCode.Db.Utils.Crud.SqlServer;
-using TauCode.Db.Utils.Inspection;
-using TauCode.Db.Utils.Inspection.SQLite;
-using TauCode.Db.Utils.Inspection.SqlServer;
-using TauCode.Db.Utils.Serialization;
-using TauCode.Db.Utils.Serialization.SQLite;
-using TauCode.Db.Utils.Serialization.SqlServer;
+using TauCode.Db;
+using TauCode.Db.SQLite;
+using TauCode.Db.SqlServer;
 using TauCode.Domain.NHibernate.Conventions;
 using TauCode.Domain.NHibernate.Tests.Persistence;
-using TauCode.Utils.Extensions;
+using TauCode.Extensions;
 
 namespace TauCode.Domain.NHibernate.Tests.Base
 {
@@ -32,11 +23,11 @@ namespace TauCode.Domain.NHibernate.Tests.Base
     {
         protected IDbConnection Connection { get; private set; }
         protected string ConnectionString { get; private set; }
-        protected IDbInspector DbInspector { get; private set; } // todo: get rid of.
-        protected IScriptBuilder ScriptBuilder { get; private set; } // todo: get rid of.
-        protected ICruder Cruder { get; private set; } // todo: get rid of.
+        protected IDbInspector DbInspector { get; private set; }
+        protected IScriptBuilder ScriptBuilder { get; private set; }
+        protected ICruder Cruder { get; private set; }
 
-        protected IDataSerializer DataSerializer { get; private set; }
+        protected IDbSerializer DbSerializer { get; private set; }
 
         protected IContainer Container { get; private set; }
 
@@ -48,19 +39,19 @@ namespace TauCode.Domain.NHibernate.Tests.Base
         protected ISession TestSession { get; private set; }
         protected ISession AssertSession { get; private set; }
 
-        protected abstract TargetDbType GetTargetDbType();
+        protected abstract string GetDbProviderName();
         protected abstract string CreateConnectionString();
         protected abstract IDbConnection CreateDbConnection(string connectionString);
 
         protected virtual IDbInspector CreateDbInspector(IDbConnection connection)
         {
-            var dbType = this.GetTargetDbType();
+            var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case TargetDbType.SqlServer:
+                case DbProviderNames.SqlServer:
                     return new SqlServerInspector(connection);
 
-                case TargetDbType.SQLite:
+                case DbProviderNames.SQLite:
                     return new SQLiteInspector(connection);
 
                 default:
@@ -70,13 +61,13 @@ namespace TauCode.Domain.NHibernate.Tests.Base
 
         protected virtual IScriptBuilder CreateScriptBuilder()
         {
-            var dbType = this.GetTargetDbType();
+            var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case TargetDbType.SqlServer:
+                case DbProviderNames.SqlServer:
                     return new SqlServerScriptBuilder();
 
-                case TargetDbType.SQLite:
+                case DbProviderNames.SQLite:
                     return new SQLiteScriptBuilder();
 
                 default:
@@ -86,30 +77,30 @@ namespace TauCode.Domain.NHibernate.Tests.Base
 
         protected virtual ICruder CreateCruder()
         {
-            var dbType = this.GetTargetDbType();
+            var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case TargetDbType.SqlServer:
-                    return new SqlServerCruder();
+                case DbProviderNames.SqlServer:
+                    return new SqlServerCruder(this.Connection);
 
-                case TargetDbType.SQLite:
-                    return new SQLiteCruder();
+                case DbProviderNames.SQLite:
+                    return new SQLiteCruder(this.Connection);
 
                 default:
                     throw new NotSupportedException($"{dbType} is not supported.");
             }
         }
 
-        protected virtual IDataSerializer CreateDataSerializer()
+        protected virtual IDbSerializer CreateDataSerializer()
         {
-            var dbType = this.GetTargetDbType();
+            var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case TargetDbType.SqlServer:
-                    return new SqlServerDataSerializer();
+                case DbProviderNames.SqlServer:
+                    return new SqlServerSerializer(this.Connection);
 
-                case TargetDbType.SQLite:
-                    return new SQLiteDataSerializer();
+                case DbProviderNames.SQLite:
+                    return new SQLiteSerializer(this.Connection);
 
                 default:
                     throw new NotSupportedException($"{dbType} is not supported.");
@@ -168,7 +159,7 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             this.DbInspector = this.CreateDbInspector(this.Connection);
             this.ScriptBuilder = this.CreateScriptBuilder();
             this.Cruder = this.CreateCruder();
-            this.DataSerializer = this.CreateDataSerializer();
+            this.DbSerializer = this.CreateDataSerializer();
         }
 
         [OneTimeTearDown]
@@ -195,12 +186,12 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             this.AssertSession = this.AssertLifetimeScope.Resolve<ISession>();
 
             // data
-            this.DbInspector.PurgeDb();
+            this.DbInspector.DropAllTables();
             var script = typeof(TestBase).Assembly.GetResourceText("create-db.sql", true);
-            this.DbInspector.ExecuteScript(script);
+            this.Connection.ExecuteCommentedScript(script);
             
             var json = typeof(TestBase).Assembly.GetResourceText("testdb.json", true);
-            this.DataSerializer.DeserializeDb(this.Connection, json);
+            this.DbSerializer.DeserializeDbData(json);
         }
 
         [TearDown]
