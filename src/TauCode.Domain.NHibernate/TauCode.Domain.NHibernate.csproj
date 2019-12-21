@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentNHibernate" Version="2.1.2" />
-    <PackageReference Include="TauCode.Domain" Version="3.0.0.1" />
+    <PackageReference Include="TauCode.Domain" Version="1.0.0-dev-2019-12-21-23-43" />
   </ItemGroup>
 
 </Project>

@@ -36,6 +36,11 @@ namespace TauCode.Domain.NHibernate.Types
                 {
                     parameterValue = id.ToString();
                 }
+                else if (value is Guid guid)
+                {
+                    // necessary for HQL, e.g. there is a NHibernate method "SetGuid" but there is no "SetId"
+                    parameterValue = guid.ToString();
+                }
                 else if (value is string str)
                 {
                     parameterValue = str;
