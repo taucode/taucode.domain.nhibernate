@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>TauCode.Domain.NHibernate</id>
-    <version>1.0.0.0-dev-2019-12-21-22-49</version>
+    <version>1.0.0.0-dev-2019-12-21-23-55</version>
     <authors>TauCode</authors>
     <owners>TauCode</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -15,7 +15,7 @@
     <tags>taucode domain nhibernate</tags>
     <dependencies>
       <dependency id="FluentNHibernate" version="2.1.2" />
-      <dependency id="TauCode.Domain" version="1.0.0-dev-2019-12-21-22-32" />
+      <dependency id="TauCode.Domain" version="1.0.0-dev-2019-12-21-23-43" />
     </dependencies>
   </metadata>
   <files>
