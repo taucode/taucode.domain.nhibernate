@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>TauCode.Domain.NHibernate</id>
-    <version>1.0.0.0-dev-2019-12-21-23-55</version>
+    <version>1.0.0.0-dev-2020-03-14-23-32</version>
     <authors>TauCode</authors>
     <owners>TauCode</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/taucode/taucode.domain</projectUrl>
     <description>NHibernate support for TauCode Domain</description>
     <releaseNotes>
-      Migrating to nuget.org
+      Migrating to Azure DevOps.
     </releaseNotes>
     <tags>taucode domain nhibernate</tags>
     <dependencies>
