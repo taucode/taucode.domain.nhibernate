@@ -14,13 +14,15 @@
     </releaseNotes>
     <tags>taucode domain nhibernate</tags>
     <dependencies>
-      <dependency id="FluentNHibernate" version="2.1.2" />
-      <dependency id="TauCode.Domain" version="1.0.0-dev-2019-12-21-23-43" />
+      <group targetFramework=".NETStandard2.1">
+        <dependency id="FluentNHibernate" version="2.1.2" />
+        <dependency id="TauCode.Domain" version="1.0.0-dev-2020-03-15-21-19" />
+      </group>
     </dependencies>
   </metadata>
   <files>
     <file src="..\LICENSE.txt" target="" />
-    <file src="..\src\TauCode.Domain.NHibernate\bin\Release\netstandard2.0\TauCode.Domain.NHibernate.dll" target="lib\netstandard2.0" />
-    <file src="..\src\TauCode.Domain.NHibernate\bin\Release\netstandard2.0\TauCode.Domain.NHibernate.pdb" target="lib\netstandard2.0" />
+    <file src="..\src\TauCode.Domain.NHibernate\bin\Release\netstandard2.1\TauCode.Domain.NHibernate.dll" target="lib\netstandard2.1" />
+    <file src="..\src\TauCode.Domain.NHibernate\bin\Release\netstandard2.1\TauCode.Domain.NHibernate.pdb" target="lib\netstandard2.1" />
   </files>
 </package>
