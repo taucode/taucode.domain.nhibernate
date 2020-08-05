@@ -47,7 +47,7 @@ namespace TauCode.Domain.NHibernate.Types
                 }
                 else
                 {
-                    throw new NotSupportedException();
+                    throw new NotSupportedException(); // todo: more verbose
                 }
             }
 
