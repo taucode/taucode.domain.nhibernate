@@ -47,7 +47,7 @@ namespace TauCode.Domain.NHibernate.Types
                 }
                 else
                 {
-                    throw new NotSupportedException(); // todo: more verbose
+                    throw new NotSupportedException($"Cannot convert value '{value}' of type '{value.GetType().FullName}' to '{typeof(T).FullName}'.");
                 }
             }
 
