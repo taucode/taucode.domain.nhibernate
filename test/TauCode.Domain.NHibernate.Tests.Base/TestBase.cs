@@ -11,7 +11,6 @@ using System.Globalization;
 using System.Reflection;
 using TauCode.Db;
 using TauCode.Db.SQLite;
-using TauCode.Db.SqlServer;
 using TauCode.Domain.NHibernate.Conventions;
 using TauCode.Domain.NHibernate.Tests.Persistence;
 using TauCode.Extensions;
@@ -24,13 +23,11 @@ namespace TauCode.Domain.NHibernate.Tests.Base
         protected IDbConnection Connection { get; private set; }
         protected string ConnectionString { get; private set; }
         protected IDbInspector DbInspector { get; private set; }
-        protected IScriptBuilder ScriptBuilder { get; private set; }
-        protected ICruder Cruder { get; private set; }
+        protected IDbScriptBuilder ScriptBuilder { get; private set; }
+        protected IDbCruder Cruder { get; private set; }
 
         protected IDbSerializer DbSerializer { get; private set; }
-
         protected IContainer Container { get; private set; }
-
         protected ILifetimeScope SetupLifetimeScope { get; private set; }
         protected ILifetimeScope TestLifetimeScope { get; private set; }
         protected ILifetimeScope AssertLifetimeScope { get; private set; }
@@ -48,9 +45,6 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case DbProviderNames.SqlServer:
-                    return new SqlServerInspector(connection);
-
                 case DbProviderNames.SQLite:
                     return new SQLiteInspector(connection);
 
@@ -59,14 +53,11 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             }
         }
 
-        protected virtual IScriptBuilder CreateScriptBuilder()
+        protected virtual IDbScriptBuilder CreateScriptBuilder()
         {
             var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case DbProviderNames.SqlServer:
-                    return new SqlServerScriptBuilder();
-
                 case DbProviderNames.SQLite:
                     return new SQLiteScriptBuilder();
 
@@ -75,14 +66,11 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             }
         }
 
-        protected virtual ICruder CreateCruder()
+        protected virtual IDbCruder CreateCruder()
         {
             var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case DbProviderNames.SqlServer:
-                    return new SqlServerCruder(this.Connection);
-
                 case DbProviderNames.SQLite:
                     return new SQLiteCruder(this.Connection);
 
@@ -96,9 +84,6 @@ namespace TauCode.Domain.NHibernate.Tests.Base
             var dbType = this.GetDbProviderName();
             switch (dbType)
             {
-                case DbProviderNames.SqlServer:
-                    return new SqlServerSerializer(this.Connection);
-
                 case DbProviderNames.SQLite:
                     return new SQLiteSerializer(this.Connection);
 
