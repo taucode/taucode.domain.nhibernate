@@ -28,12 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{B89AD664
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests", "test\TauCode.Domain.NHibernate.Tests\TauCode.Domain.NHibernate.Tests.csproj", "{BCD961B7-B088-4D33-9DC7-E3DDB46D66EE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Base", "test\TauCode.Domain.NHibernate.Tests.Base\TauCode.Domain.NHibernate.Tests.Base.csproj", "{DE6825EE-0DDA-437A-B94F-6FB1D950DF6D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Domain", "test\TauCode.Domain.NHibernate.Tests.Domain\TauCode.Domain.NHibernate.Tests.Domain.csproj", "{CA57DCE1-427D-45A9-817A-DC9530F397C9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TauCode.Domain.NHibernate.Tests.Persistence", "test\TauCode.Domain.NHibernate.Tests.Persistence\TauCode.Domain.NHibernate.Tests.Persistence.csproj", "{3300C54D-5B30-4E16-A5E0-AB3F18F465EF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,18 +42,6 @@ Global
 		{BCD961B7-B088-4D33-9DC7-E3DDB46D66EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCD961B7-B088-4D33-9DC7-E3DDB46D66EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCD961B7-B088-4D33-9DC7-E3DDB46D66EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE6825EE-0DDA-437A-B94F-6FB1D950DF6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE6825EE-0DDA-437A-B94F-6FB1D950DF6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE6825EE-0DDA-437A-B94F-6FB1D950DF6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE6825EE-0DDA-437A-B94F-6FB1D950DF6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA57DCE1-427D-45A9-817A-DC9530F397C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA57DCE1-427D-45A9-817A-DC9530F397C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA57DCE1-427D-45A9-817A-DC9530F397C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA57DCE1-427D-45A9-817A-DC9530F397C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3300C54D-5B30-4E16-A5E0-AB3F18F465EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3300C54D-5B30-4E16-A5E0-AB3F18F465EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3300C54D-5B30-4E16-A5E0-AB3F18F465EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3300C54D-5B30-4E16-A5E0-AB3F18F465EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,9 +49,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BD8F9ED9-22C4-43E3-BA85-166FC0DC2F37} = {89412E0C-9F93-4FB0-ACB6-DC95174759A0}
 		{BCD961B7-B088-4D33-9DC7-E3DDB46D66EE} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
-		{DE6825EE-0DDA-437A-B94F-6FB1D950DF6D} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
-		{CA57DCE1-427D-45A9-817A-DC9530F397C9} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
-		{3300C54D-5B30-4E16-A5E0-AB3F18F465EF} = {EE8B33C7-90A5-4CCF-99D9-BC9CF029F312}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E033216E-1151-4D66-A416-3EBD14511CA8}

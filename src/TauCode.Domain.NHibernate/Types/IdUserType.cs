@@ -93,14 +93,7 @@ namespace TauCode.Domain.NHibernate.Types
             return value;
         }
 
-        public SqlType[] SqlTypes
-        {
-            get
-            {
-                Enum.TryParse(typeof(Guid).Name, false, out DbType dbType);
-                return new[] { new SqlType(dbType) };
-            }
-        }
+        public SqlType[] SqlTypes => new[] { new SqlType(DbType.Guid) };
 
         public Type ReturnedType => typeof(T);
 
